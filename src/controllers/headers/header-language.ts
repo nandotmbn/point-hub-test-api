@@ -5,7 +5,7 @@ import message from '../../views/message';
 export default function headerLanguange(req: Request, res: Response, next: NextFunction) {
   let isIncluded = false;
   if (!req.headers['accept-language'])
-    res.status(400).send(
+    return res.status(400).send(
       message({
         statusCode: 400,
         message: 'Accept Language does not exist',
@@ -19,7 +19,7 @@ export default function headerLanguange(req: Request, res: Response, next: NextF
     if (req.headers['accept-language'] == lang) isIncluded = true;
   });
   if (!isIncluded)
-    res.status(400).send(
+    return res.status(400).send(
       message({
         statusCode: 400,
         message: 'Accept Language Not Included',

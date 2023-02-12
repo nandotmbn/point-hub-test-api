@@ -9,7 +9,7 @@ let interval: number;
 
 function WebSocket() {
   io.on('connection', (socket: Socket) => {
-    console.log(`${socket.id} is connected`);
+    console.log(`[socket]: ${socket.id} is connected`);
     socket.on('disconnect', () => {
       clearInterval(interval);
     });
