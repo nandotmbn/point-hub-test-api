@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Request, Response } from 'express';
 import Users from '../../models/users.model';
-import { validateLoginOwner } from '../../validators';
+import { validateLogin } from '../../validators';
 import message from '../../views/message';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -10,7 +10,7 @@ async function loginProjectOwnerController(
   req: Request<OwnerRequestParams, OwnerResponseBody, OwnerRequestBody, OwnerRequestQuery>,
   res: Response
 ) {
-  const { error } = validateLoginOwner(req.body);
+  const { error } = validateLogin(req.body);
   if (error)
     return res.status(400).send(
       message({

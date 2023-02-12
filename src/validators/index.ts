@@ -1,3 +1,3 @@
 export { objectIdValidator } from './objectid.validators';
-export { validateRegisterOwner, validateLoginOwner } from './owner.validators';
+export { validateRegister, validateLogin } from './users.validators';
 export { validateRoles } from './roles.validators';

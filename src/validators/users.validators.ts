@@ -1,10 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Joi from 'joi';
-import { joiObjectId } from 'ts-joi-objectid';
 
-const MyJoi = joiObjectId(Joi);
-
-function validateRegisterOwner(owner: OwnerInterface) {
+function validateRegister(owner: OwnerInterface) {
   const schema = Joi.object({
     username: Joi.string()
       .min(5)
@@ -68,26 +65,6 @@ function validateRegisterOwner(owner: OwnerInterface) {
         });
         return errors;
       }),
-    role_id: MyJoi()
-      .required()
-      .error((errors: Joi.ErrorReport[]): any => {
-        errors.forEach((err) => {
-          switch (err.code) {
-            case 'any.required':
-              err.message = 'Roles id dibutuhkan!';
-              break;
-            case 'string.base':
-              err.message = 'Roles id haruslah sebuah string!';
-              break;
-            case 'string.pattern.name':
-              err.message = 'Roles id tidak valid dengan pola ObjectId!';
-              break;
-            default:
-              break;
-          }
-        });
-        return errors;
-      }),
     password: Joi.string()
       .min(8)
       .max(255)
@@ -121,7 +98,7 @@ function validateRegisterOwner(owner: OwnerInterface) {
   return schema.validate(owner);
 }
 
-function validateLoginOwner(owner: OwnerInterface) {
+function validateLogin(owner: OwnerInterface) {
   const schema = Joi.object({
     email: Joi.string()
       .min(1)
@@ -189,4 +166,4 @@ function validateLoginOwner(owner: OwnerInterface) {
   return schema.validate(owner);
 }
 
-export { validateRegisterOwner, validateLoginOwner };
+export { validateRegister, validateLogin };
