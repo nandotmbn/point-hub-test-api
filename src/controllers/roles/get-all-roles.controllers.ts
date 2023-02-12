@@ -3,7 +3,7 @@ import Roles from '../../models/roles.model';
 import message from '../../views/message';
 
 async function getAllRolesController(
-  req: Request<RequestParams, ResponseBody, RequestBody, RequestQuery>,
+  req: Request<RolesRequestParams, RolesResponseBody, RolesRequestBody, RolesRequestQuery>,
   res: Response
 ) {
   const { page = 1, limit = 2 } = req.query;
@@ -17,7 +17,7 @@ async function getAllRolesController(
     return res.status(404).send(
       message({
         statusCode: 404,
-        message: 'Role is not found or out of reach limit',
+        message: 'Role tidak ditemukan atau diluar jangkauan indeksasi',
         data: isRolesExist
       })
     );

@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
-import Roles, { validateRoles } from '../../models/roles.model';
+import Roles from '../../models/roles.model';
+import { validateRoles } from '../../validators/roles.validators';
 import message from '../../views/message';
 
 async function createRolesController(req: Request, res: Response) {
@@ -21,7 +22,7 @@ async function createRolesController(req: Request, res: Response) {
     return res.status(400).send(
       message({
         statusCode: 400,
-        message: 'Roles is already registered',
+        message: 'Role dengan nama ' + req.body.roleName + ' sudah ada',
         data: req.body
       })
     );

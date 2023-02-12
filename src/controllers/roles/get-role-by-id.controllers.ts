@@ -12,7 +12,7 @@ async function getRoleByIdController(
     return res.status(404).send(
       message({
         statusCode: 404,
-        message: 'Role by given roles_id is not found',
+        message: 'Role dengan id ' + req.params.roles_id + ' tidak ditemukan',
         data: isRolesExist
       })
     );

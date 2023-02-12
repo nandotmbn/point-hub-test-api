@@ -1,20 +1,21 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 interface RolesInterface {
   roleName: string;
 }
 
-interface RequestQuery {
+interface RolesRequestQuery {
   page: number;
   limit: number;
 }
 
-interface RequestParams {
+interface RolesRequestParams {
   roles_id: string;
 }
 
-interface ResponseBody {
+interface RolesResponseBody {
   null: null;
 }
 
-interface RequestBody {
+interface RolesRequestBody {
   null: null;
 }

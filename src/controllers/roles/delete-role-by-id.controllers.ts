@@ -9,7 +9,7 @@ async function deleteRoleByIdController(req: Request, res: Response) {
     return res.status(404).send(
       message({
         statusCode: 404,
-        message: 'Role by given id is not exist',
+        message: 'Role dengan id ' + req.params.roles_id + ' tidak ditemukan',
         data: req.body
       })
     );

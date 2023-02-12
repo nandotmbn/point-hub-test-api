@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
-import Roles, { validateRoles } from '../../models/roles.model';
+import Roles from '../../models/roles.model';
+import { validateRoles } from '../../validators/roles.validators';
 import message from '../../views/message';
 
 async function updateRolesController(req: Request, res: Response) {
@@ -19,7 +20,7 @@ async function updateRolesController(req: Request, res: Response) {
     return res.status(404).send(
       message({
         statusCode: 404,
-        message: 'Role by given id is not exist',
+        message: 'Role dengan id ' + req.params.roles_id + ' tidak ditemukan',
         data: req.body
       })
     );
