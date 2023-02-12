@@ -1,8 +1,11 @@
 import connectDatabase from '../src/databases/connect.database';
 
 describe('Database Test', () => {
-  it('Should be throwing error', async () => {
+  it('Should be throwing error by given empty string', async () => {
     expect(connectDatabase('')).rejects.toThrow();
+  });
+  it('Should be throwing error by given random string', async () => {
+    expect(connectDatabase('kawdvawdkgaudlawjd')).rejects.toThrow();
   });
   it('Should be returning true', async () => {
     expect(

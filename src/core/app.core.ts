@@ -1,8 +1,8 @@
 import { json } from 'body-parser';
 import express, { urlencoded } from 'express';
 import headerLanguange from '../controllers/headers/header-language';
-import errorHandler from '../logs/error-logger';
-import requestLogger from '../logs/request-logger';
+import errorHandler from '../logs/error.logs';
+import requestLogger from '../logs/request.logs';
 import compression from 'compression';
 import cors from 'cors';
 import helmet from 'helmet';

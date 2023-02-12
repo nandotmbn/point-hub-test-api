@@ -1,4 +1,4 @@
-import { http } from './http';
+import { http } from './http.core';
 import { Server, Socket } from 'socket.io';
 
 const io = new Server(http, {

@@ -1,4 +1,4 @@
-const { port } = require('../src/core/http');
+const { port } = require('../src/core/http.core');
 
 describe('Core Test', () => {
   describe('HTTP', () => {

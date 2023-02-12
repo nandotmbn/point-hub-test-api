@@ -54,6 +54,7 @@
     "mongoose": "^6.9.0",
     "socket.io": "^4.5.4",
     "supertest": "^6.3.3",
+    "ts-joi-objectid": "^1.0.2",
     "winston": "^3.8.2"
   },
   "husky": {

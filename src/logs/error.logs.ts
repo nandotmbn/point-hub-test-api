@@ -1,7 +1,7 @@
 import winston, { Logger } from 'winston';
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 
-function errorHandler(err: Error, req: Request, res: Response) {
+function errorHandler(err: Error, req: Request, res: Response, next: NextFunction) {
   AppLogger.error(err.message);
   res.status(500).send('Something failed');
 }

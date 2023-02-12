@@ -3,7 +3,7 @@ import {compilerOptions} from './tsconfig.json';
 import { pathsToModuleNameMapper } from 'ts-jest';
 
 const config: Config.InitialOptions = {
-  verbose: false,
+  verbose: true,
   testEnvironment: 'node',
   preset: 'ts-jest',
   testRegex: '/tests/.*\\.(test|spec)?\\.(ts|tsx)$',
