@@ -1,10 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import mongoose from 'mongoose';
 
-const UserSchema = new mongoose.Schema({
-  user: {
+const TeamSchema = new mongoose.Schema({
+  project: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Users",
+    ref: 'Projects'
+  },
+  email: {
+    type: String,
+    max: 255,
+    min: 0,
   },
   nameAlias: {
     type: String,
@@ -19,7 +24,7 @@ const UserSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId
   },
   branchAccess_id: {
-    type: mongoose.Schema.Types.ObjectId
+    type: [mongoose.Schema.Types.ObjectId]
   },
   isArchived: {
     type: Boolean,
@@ -47,10 +52,10 @@ const UserSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId
   },
   warehouseAccess_id: {
-    type: mongoose.Schema.Types.ObjectId
+    type: [mongoose.Schema.Types.ObjectId]
   }
 });
 
-const Users = mongoose.model('Users', UserSchema);
+const Teams = mongoose.model('Teams', TeamSchema);
 
-export default Users;
+export default Teams;
