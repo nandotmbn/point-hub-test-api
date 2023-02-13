@@ -15,3 +15,20 @@ interface TeamInvitationInterface {
   warehouseDefault_id: string;
   warehouseAccess_id: [string];
 }
+
+interface TeamsRequestQuery {
+  page: number;
+  limit: number;
+}
+
+interface TeamsRequestParams {
+  project_id: string;
+}
+
+interface TeamsResponseBody {
+  null: null;
+}
+
+interface TeamsRequestBody {
+  null: null;
+}

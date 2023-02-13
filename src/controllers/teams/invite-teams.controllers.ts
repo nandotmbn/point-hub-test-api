@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import Project from '../../models/projects.model';
 import Roles from '../../models/roles.model';
 import Teams from '../../models/teams.model';
+import { sendMail } from '../../utils';
 import { objectIdValidator, validateTeamsInvitation } from '../../validators';
 import message from '../../views/message';
 
@@ -52,6 +53,7 @@ async function createTeamInvitationController(req: Request, res: Response) {
 
   const isProjectWithIdAndEmailExist = await Teams.find({
     project: req.params.project_id,
+    isActive: false,
     email: req.body.email
   });
 
@@ -67,6 +69,7 @@ async function createTeamInvitationController(req: Request, res: Response) {
 
   const isProjectWithIdAndUserNameExist = await Teams.find({
     project: req.params.project_id,
+    isActive: false,
     nameAlias: req.body.nameAlias
   });
 
@@ -85,6 +88,8 @@ async function createTeamInvitationController(req: Request, res: Response) {
     ...req.body,
     project: req.params.project_id
   });
+
+  sendMail({email: req.body.email, username: req.body.nameAlias})
 
   res.status(201).send(
     message({

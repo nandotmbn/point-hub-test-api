@@ -1,7 +1,8 @@
 import express from 'express';
-import { createTeamInvitationController } from '../controllers/teams';
+import { createTeamInvitationController, getTeamInvitationController } from '../controllers/teams';
 const router = express.Router();
 
+router.get('/invite/:project_id', getTeamInvitationController);
 router.post('/invite/:project_id', createTeamInvitationController);
 
 router.stack.forEach(function (middleware) {
