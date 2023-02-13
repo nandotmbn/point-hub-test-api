@@ -4,8 +4,6 @@
   "description": "IoT Listener for GDSC PENS",
   "main": "index.js",
   "scripts": {
-    "install": "yarn install --ignore-platform --ignore-engines",
-    "preinstall": "yarn config set ignore-platform true && yarn config set ignore-engines true",
     "build": "npx tsc",
     "start": "node dist/index.js",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
