@@ -6,7 +6,7 @@ import { keyHasher, sendMail } from '../../utils';
 import { objectIdValidator, validateTeamsInvitation } from '../../validators';
 import message from '../../views/message';
 
-async function createTeamInvitationController(req: Request, res: Response) {
+async function editTeamInvitationController(req: Request, res: Response) {
   const objectId = objectIdValidator(req.params.project_id, 'Project');
   if (objectId.error) {
     return res.status(400).send(
@@ -51,56 +51,39 @@ async function createTeamInvitationController(req: Request, res: Response) {
     );
   }
 
-  const isProjectWithIdAndEmailExist = await Teams.find({
-    project: req.params.project_id,
-    isActive: false,
-    email: req.body.email
-  });
-
-  if (isProjectWithIdAndEmailExist.length) {
-    return res.status(400).send(
+  const isTeamsInvitationExist = await Teams.findById(req.params.teams_id);
+  if (!isTeamsInvitationExist) {
+    return res.status(404).send(
       message({
-        statusCode: 400,
-        message: 'Teams dengan id ' + req.params.project_id + ' dan email ' + req.body.email + ' sudah diundang!',
+        statusCode: 404,
+        message: 'Invitation dengan id ' + req.params.teams_id + ' tidak ditemukan!',
         data: {}
       })
     );
   }
 
-  const isProjectWithIdAndUserNameExist = await Teams.find({
-    project: req.params.project_id,
-    isActive: false,
-    nameAlias: req.body.nameAlias
-  });
+  const invitationKey = keyHasher(64);
 
-  if (isProjectWithIdAndUserNameExist.length) {
-    return res.status(400).send(
-      message({
-        statusCode: 400,
-        message:
-          'Teams dengan id ' + req.params.project_id + ' dan nama alias ' + req.body.nameAlias + ' sudah diundang!',
-        data: {}
-      })
-    );
-  }
-
-  const invitationKey = keyHasher(64)
-
-  const newTeams = new Teams({
-    ...req.body,
-    project: req.params.project_id,
-    invitationKey: invitationKey
-  });
+  const updatedInvitation = await Teams.findByIdAndUpdate(
+    req.params.teams_id,
+    {
+      $set: {
+        ...req.body,
+        invitationKey
+      }
+    },
+    { new: true }
+  );
 
   sendMail({email: req.body.email, username: req.body.nameAlias, invitation_key: invitationKey})
 
   res.status(201).send(
     message({
-      data: await newTeams.save(),
+      data: updatedInvitation,
       message: 'Team invitation has been sent',
       statusCode: 201
     })
   );
 }
 
-export { createTeamInvitationController };
+export { editTeamInvitationController };

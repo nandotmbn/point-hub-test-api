@@ -16,6 +16,11 @@ const TeamSchema = new mongoose.Schema({
     min: 0,
     unique: true
   },
+  invitationKey: {
+    type: String,
+    min: 0,
+    unique: true
+  },
   role: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Roles'

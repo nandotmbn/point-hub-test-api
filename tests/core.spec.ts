@@ -1,4 +1,4 @@
-const { port } = require('../src/core/http.core');
+import { port } from '../src/core/http.core';
 
 describe('Core Test', () => {
   describe('HTTP', () => {

@@ -24,9 +24,9 @@ async function loginProjectOwnerController(
     email: req.body.email
   });
   if (!isUserExist) {
-    return res.status(400).send(
+    return res.status(404).send(
       message({
-        statusCode: 400,
+        statusCode: 404,
         message: 'User dengan email ' + req.body.email + ' tidak ditemukan',
         data: req.body
       })
@@ -35,9 +35,9 @@ async function loginProjectOwnerController(
 
   const isValid = await bcrypt.compare(req.body.password, isUserExist.password!);
   if (!isValid)
-    return res.status(400).send(
+    return res.status(403).send(
       message({
-        statusCode: 400,
+        statusCode: 403,
         message: 'Invalid password',
         data: req.body
       })
@@ -46,7 +46,7 @@ async function loginProjectOwnerController(
   res.header('x-auth-token', jwt.sign({ _id: isUserExist._id }, process.env.jwtPrivateKey!)).send(
     message({
       statusCode: 200,
-      message: 'You have successfully logged in',
+      message: 'You have successfully logged in!',
       data: isUserExist
     })
   );

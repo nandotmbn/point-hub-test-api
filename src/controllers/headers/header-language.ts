@@ -3,6 +3,9 @@ import LANGUAGE from '../../static/language.json';
 import message from '../../views/message';
 
 export default function headerLanguange(req: Request, res: Response, next: NextFunction) {
+  if (req.url.includes("/api/v1/teams/accept-invitation/")) {
+    return next();
+  }
   let isIncluded = false;
   if (!req.headers['accept-language'])
     return res.status(400).send(
@@ -11,8 +14,8 @@ export default function headerLanguange(req: Request, res: Response, next: NextF
         message: 'Accept Language does not exist',
         data: {
           message: 'You have to use listed language',
-          listedLanguage: LANGUAGE,
-        },
+          listedLanguage: LANGUAGE
+        }
       })
     );
   LANGUAGE.forEach((lang) => {
@@ -25,8 +28,8 @@ export default function headerLanguange(req: Request, res: Response, next: NextF
         message: 'Accept Language Not Included',
         data: {
           message: 'You have to use listed language',
-          listedLanguage: LANGUAGE,
-        },
+          listedLanguage: LANGUAGE
+        }
       })
     );
   next();

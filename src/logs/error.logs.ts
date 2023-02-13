@@ -9,9 +9,8 @@ function errorHandler(err: Error, req: Request, res: Response, next: NextFunctio
 const AppLogger: Logger = winston.createLogger({
   format: winston.format.json(),
   defaultMeta: { service: 'user-service' },
-  transports: [
-    new winston.transports.File({ filename: 'log/error.log', level: 'error' })
-  ]
+  transports: [new winston.transports.File({ filename: 'log/error.log', level: 'error' })]
 });
 
 export default errorHandler;
+export { AppLogger };

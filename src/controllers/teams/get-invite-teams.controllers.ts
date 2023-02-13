@@ -23,7 +23,7 @@ async function getTeamInvitationController(
     );
   }
 
-  res.send(message({ statusCode: 200, data: isTeamsExist, message: 'OK' }));
+  res.send(message({ statusCode: 200, data: isTeamsExist, message: 'Teams Invitation Has Successfully Retrieved' }));
 }
 
 export { getTeamInvitationController };

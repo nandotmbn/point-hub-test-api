@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import "express-async-errors";
+import 'express-async-errors';
 import dotEnv from 'dotenv';
 import createApp from './src/core/app.core';
 import { app, http, port } from './src/core/http.core';
@@ -13,3 +13,4 @@ coreRoutes(app);
 connectDatabase(process.env.MONGOURI!);
 WebSocket();
 http.listen(port, () => console.log(`[server]: App is listening on port ${port}`));
+export { http };
