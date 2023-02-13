@@ -2215,7 +2215,6 @@ chokidar@^3.5.3:
     normalize-path "~3.0.0"
     readdirp "~3.6.0"
   optionalDependencies:
-    fsevents "~2.3.2"
 
 chownr@^2.0.0:
   version "2.0.0"
@@ -3494,8 +3493,6 @@ jest-haste-map@^29.4.2:
     jest-worker "^29.4.2"
     micromatch "^4.0.4"
     walker "^1.0.8"
-  optionalDependencies:
-    fsevents "^2.3.2"
 
 jest-leak-detector@^29.4.2:
   version "29.4.2"
@@ -4974,7 +4971,6 @@ ts-joi-objectid@^1.0.2:
     emoji-regex "^8.0.0"
     escalade "^3.1.1"
     fill-range "^7.0.1"
-    fsevents "^2.3.2"
     get-caller-file "^2.0.5"
     glob-parent "^5.1.2"
     has-flag "^4.0.0"
